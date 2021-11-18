@@ -1,0 +1,325 @@
+swagger : '2.0'
+info : 
+  title : Manage Employees REST APIs
+  description : the document api 
+  contact : 
+    name : nbttrung
+    url : https://swagger.io/specification/v2/
+    email : nguyenbatrungnbt2000@gmail.com
+  license : 
+    name : Apache 2.0
+    url : http://www.apache.org/licenses/LICENSE-2.0.html
+  version : 1.0.1
+host : 'localhost:3000'
+basePath: /Manage
+
+paths : 
+  /department:
+    get : 
+      tags :
+        - Department 
+      summary : Get All Department 
+      operationId : getdepartment 
+      consumes : []
+      responses : 
+        200:
+          $ref: "#/responses/Departments"
+        401:
+          $ref: "#/responses/NoAuthorized"
+        403:
+          $ref: "#/responses/Forbidden"
+        404:
+          $ref: "#/responses/NotFound"
+    post : 
+      tags : 
+        - Department
+      summary : Add new a department
+      operationId : addDepartment 
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters : 
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/DepartmentReq'
+      responses:
+        200:
+          $ref: '#/responses/Department'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+  /department/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: Department ID
+        required: true
+        type: string
+    get : 
+      tags : 
+        - Department
+      summary : Get departmentID
+      operationId : getDepartmentID 
+      consumes: []
+      responses:
+        200:
+          $ref: '#/responses/Department'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+    put : 
+      tags : 
+        - Department
+      summary : Update a department
+      operationId : editDepartment 
+      consumes: []
+      parameters : 
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/DepartmentReq'
+      responses:
+        200:
+          $ref: '#/responses/Department'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+  /employee :
+    get : 
+      tags :
+        - Employees 
+      summary : Get All Employees 
+      operationId : getemployee
+      consumes : []
+      responses : 
+        200:
+          $ref: "#/responses/Employees"
+        401:
+          $ref: "#/responses/NoAuthorized"
+        403:
+          $ref: "#/responses/Forbidden"
+        404:
+          $ref: "#/responses/NotFound"
+    post : 
+      tags : 
+        - Employees
+      summary : Add new a Employee
+      operationId : addEmployee
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters : 
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/EmployeeRequest'
+      responses:
+        200:
+          $ref: '#/responses/Employee'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+  /employee/{id}: 
+    parameters:
+      - name: id
+        in: path
+        description: Department ID
+        required: true
+        type: string
+    get : 
+      tags : 
+        - Employees
+      summary : Get employeeID
+      operationId : getEmployeeID 
+      consumes: []
+      responses:
+        200:
+          $ref: '#/responses/Employee'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+    put : 
+      tags : 
+        - Employees
+      summary : Update a Employee
+      operationId : editEmployee 
+      consumes: []
+      parameters : 
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/EmployeeRequest'
+      responses:
+        200:
+          $ref: '#/responses/Employee'
+        201:
+          $ref: '#/responses/Created'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+    delete : 
+      tags : 
+        - Employees
+      summary : Delete a Employee
+      operationId : deleteEmployee 
+      consumes: []
+      responses:
+        200:
+          $ref: '#/responses/OK'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+definitions : 
+  Department : 
+    type : object 
+    properties: 
+      id : 
+        type : string 
+        example: "PB0001"
+      name : 
+        type: string
+        example: "develop" 
+      address : 
+        type : string 
+        example : "Dogoo Tech SJC"
+      phone : 
+        type : string 
+        example : "0123654789"
+      status:
+        type: string
+        enum: [PENDING, APPROVED, REJECTED]
+  Departments:
+    type: array
+    items:
+      $ref: "#/definitions/Department"
+  DepartmentReq:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: "develop"
+      address:
+        type: string
+        example: "Dogoo Tech SJC"
+      phone : 
+        type : string 
+        example : "0123654789"
+      status:
+        type: string
+        enum: [PENDING, APPROVED, REJECTED]
+  Employee : 
+    type : object
+    properties : 
+      id : 
+        type : string 
+        example : "NV0001"
+      name : 
+        type : string 
+        example : "nguyễn bá trung "
+      address : 
+        type : string  
+        example : "hà nội "
+      email : 
+        type : string 
+        example : "batrung@gmail.com"
+      departmentid : 
+        type : string 
+        example : "PB0001"
+  Employees:
+    type: array
+    items:
+      $ref: "#/definitions/Employee"
+  EmployeeRequest:
+    type: object
+    required:
+      - name
+      - email
+      - departmentid
+    properties:
+      name:
+        type: string
+        example : "nguyễn bá trung "
+      email:
+        type: string
+        example : "batrung@gmail.com"
+      departmentid:
+        type: string
+        example : "PB0001"
+    title: EmployeeRequest
+responses:
+  Employee:
+    description: 'Employee Response'
+    schema:
+      $ref: '#/definitions/Employee'
+  Employees:
+    description: 'Employees Response'
+    schema:
+      $ref: '#/definitions/Employees'
+  Department:
+    description: 'Property Response'
+    schema:
+      $ref: '#/definitions/Department'
+  Departments:
+    description: 'Properties Response'
+    schema:
+      $ref: '#/definitions/Departments'
+  OK:
+    description: '200: OK'
+  Created:
+    description: '201: Created'
+  Accepted:
+    description: '202: Accepted'
+  NoContent:
+    description: '204: NoContent'
+  BadRequest:
+    description: "400: Bad Request"
+  NoAuthorized:
+    description: "401: No Authorized"
+  Forbidden:
+    description: "403: Forbidden"
+  NotFound:
+    description: "404: Not Found"
+  InternalServerError:
+    description: "500: Internal Server Error"
+      
+parameters:
+  Request-Context:
+    name: Request-Context
+    in: header
+    description: Request context
+    required: true
+    type: string
