@@ -8,7 +8,6 @@ import java.util.Set;
 public class DepartmentEntity {
 
     @Id
-    @GeneratedValue
     @Column(name = "Id", nullable = false)
     private String id;
 

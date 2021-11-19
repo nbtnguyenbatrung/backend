@@ -9,6 +9,4 @@ import java.util.List;
 @Repository
 public interface EmployeeJPA extends JpaRepository <EmployeeEntity, String> {
      List<EmployeeEntity> findAll();
-    /* List<Employee> findByID(String id );*/
-
 }

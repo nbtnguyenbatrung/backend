@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class EmployeeEntity {
 
     @Id
-    @GeneratedValue
     @Column(name = "Id", nullable = false)
     private String id;
 
@@ -23,16 +22,6 @@ public class EmployeeEntity {
     @ManyToOne
     @JoinColumn(name="derpartment_id", nullable=false)
     private DepartmentEntity derpartment;
-
-    public DepartmentEntity getDerpartment() {
-        return derpartment;
-    }
-
-    public void setDerpartment(DepartmentEntity derpartment) {
-        this.derpartment = derpartment;
-    }
-
-    public EmployeeEntity() {}
 
     public String getId() {
         return id;
@@ -64,6 +53,14 @@ public class EmployeeEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public DepartmentEntity getDerpartment() {
+        return derpartment;
+    }
+
+    public void setDerpartment(DepartmentEntity derpartment) {
+        this.derpartment = derpartment;
     }
 
 }

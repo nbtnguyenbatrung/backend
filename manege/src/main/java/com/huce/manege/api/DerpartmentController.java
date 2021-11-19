@@ -8,7 +8,7 @@ import com.huce.manege.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class DerpartmentController implements DepartmentApi {
@@ -17,13 +17,19 @@ public class DerpartmentController implements DepartmentApi {
     DepartmentService departmentService;
     @Override
     public ResponseEntity<Department> addDepartment(DepartmentReq request) {
-        DepartmentEntity derpartment = departmentService.createDepartment(request);
-        return new ResponseEntity<>(derpartment , HttpStatus.OK);
+        Department department = departmentService.createDepartment(request);
+        return new ResponseEntity<>(department,HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Department> editDepartment(String id, DepartmentReq request) {
-        return null;
+        Department department = departmentService.updateDepartment(id,request);
+        return new ResponseEntity<>(department,HttpStatus.OK);
+    }
+
+    @GetMapping("/departmentdelete/{id}")
+    public void delete(@PathVariable("id") String id){
+        departmentService.deleteDepartment(id);
     }
 
     @Override
