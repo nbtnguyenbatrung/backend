@@ -276,6 +276,9 @@ definitions :
       email:
         type: string
         example : "batrung@gmail.com"
+      address:
+        type: string
+        example: "hà nội "
       departmentid:
         type: string
         example : "PB0001"
