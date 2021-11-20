@@ -10,6 +10,8 @@ import com.huce.manege.serviceimpl.DepartmentServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DepartmentService implements DepartmentServiceimpl {
 
@@ -44,11 +46,20 @@ public class DepartmentService implements DepartmentServiceimpl {
 
     @Override
     public Departments getAllDepartment() {
-        return null;
+        Departments departments = new Departments();
+        List<DepartmentEntity> departmentEntity = derpartmentJPA.findAll();
+        for(DepartmentEntity departmentEntity1 : departmentEntity){
+            Department department = new Department();
+            department = mapper.toDepartmentFromDepartmentEntity(departmentEntity1);
+            departments.add(department);
+        }
+        return departments;
     }
 
     @Override
     public Department getDepartmentID(String id) {
-        return null;
+        DepartmentEntity departmentEntity = derpartmentJPA.getById(id);
+        Department department = mapper.toDepartmentFromDepartmentEntity(departmentEntity);
+        return department;
     }
 }

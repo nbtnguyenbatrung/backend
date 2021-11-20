@@ -47,4 +47,10 @@ public class EmployeeMapper {
         return employee;
     }
 
+    public EmployeeEntity toEntity(EmployeeRequest employeeRequest , EmployeeEntity employeeEntity){
+        employeeEntity.setName(employeeRequest.getName());
+        employeeEntity.setEmail(employeeRequest.getEmail());
+        employeeEntity.setAddress(employeeRequest.getAddress());
+        return employeeEntity;
+    }
 }

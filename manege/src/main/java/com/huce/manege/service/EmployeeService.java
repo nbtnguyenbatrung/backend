@@ -12,6 +12,8 @@ import com.huce.manege.serviceimpl.EmployeeServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeService  implements EmployeeServiceimpl {
 
@@ -34,22 +36,34 @@ public class EmployeeService  implements EmployeeServiceimpl {
 
     @Override
     public Employee updateEmployee(String id, EmployeeRequest req) {
-
-        return null;
+        EmployeeEntity employeeEntity = employeejpa.getById(id);
+        employeeEntity = mapper.toEntity(req,employeeEntity);
+        employeeEntity = employeejpa.save(employeeEntity);
+        Employee employee = mapper.toEmployeeFromEmployeeEntity(employeeEntity);
+        return employee;
     }
 
     @Override
     public void deleteEmployee(String id) {
-
+        EmployeeEntity employeeEntity = employeejpa.getById(id);
+        employeejpa.delete(employeeEntity);
     }
 
     @Override
     public Employees getAllEmployee() {
-        return null;
+        List<EmployeeEntity> employeeEntities = employeejpa.findAll();
+        Employees employees = new Employees();
+        for (EmployeeEntity employeeEntity : employeeEntities){
+            Employee employee = mapper.toEmployeeFromEmployeeEntity(employeeEntity);
+            employees.add(employee);
+        }
+        return employees;
     }
 
     @Override
     public Employee getemployeeID(String id) {
-        return null;
+        EmployeeEntity employeeEntity = employeejpa.getById(id);
+        Employee employee = mapper.toEmployeeFromEmployeeEntity(employeeEntity);
+        return employee;
     }
 }
