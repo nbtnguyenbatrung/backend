@@ -14,10 +14,10 @@ public class DepartmentEntity {
     @Column(name = "Name", nullable = false)
     private String Name;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "phone", nullable = false)
+    @Column(name = "phone")
     private String phone;
 
     @Column(name = "status", nullable = false)

@@ -3,15 +3,14 @@ package com.huce.manege.validator;
 import com.huce.manege.exception.BadRequestException;
 import com.huce.manege.exception.EntityNotFoundException;
 import com.huce.manege.model.DepartmentReq;
-import com.huce.manege.model.EmployeeRequest;
 import com.huce.manege.repository.DerpartmentJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DepartmentValidator {
-    private static final String DEPARTMENT_DOES_NOT_EXIST = "Employee does not exist";
-    private static final String NAME_REQUEST = "Employee name is requested";
+    private static final String DEPARTMENT_DOES_NOT_EXIST = "Department does not exist";
+    private static final String NAME_REQUEST = "Derpartment name is requested";
 
     @Autowired
     DerpartmentJPA derpartmentJPA;

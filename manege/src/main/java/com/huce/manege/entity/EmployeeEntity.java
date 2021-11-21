@@ -13,7 +13,7 @@ public class EmployeeEntity {
     @Column(name = "Name", nullable = false)
     private String Name;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address")
     private String address;
 
     @Column(name = "email", nullable = false)

@@ -1,7 +1,0 @@
-DROP TABLE IF EXISTS API_KEY;
-CREATE TABLE API_KEY (
-    ID              NUMBER NOT NULL,
-    KEY             VARCHAR (50) NOT NULL,
-    PRIMARY KEY ("ID")
-);
-
