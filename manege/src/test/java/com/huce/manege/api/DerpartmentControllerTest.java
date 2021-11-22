@@ -22,6 +22,8 @@ import static org.hamcrest.CoreMatchers.is;
 @RunWith(MockitoJUnitRunner.class)
 class DerpartmentControllerTest {
 
+    private final String API_KEY = "MOCK_API_KEY";
+
     @InjectMocks
     DerpartmentController controller;
 
@@ -37,7 +39,7 @@ class DerpartmentControllerTest {
         when(service.createDepartment(any(DepartmentReq.class)))
                 .thenReturn(DepartmentData.mockDepartment());
         ResponseEntity<Department> responseEntity =
-                controller.addDepartment(DepartmentData.mockDepartmentReq());
+                controller.addDepartment(API_KEY,DepartmentData.mockDepartmentReq());
 
         assertStatus200(responseEntity.getStatusCode());
         assertDepartment(responseEntity.getBody());

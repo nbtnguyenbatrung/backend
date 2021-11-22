@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,20 +24,23 @@ public class EmployeeController implements EmployeeApi{
 
 
     @Override
-    public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeRequest request) {
+    public ResponseEntity<Employee> addEmployee(@RequestHeader(value="apikey") String apikey,
+                                                @RequestBody EmployeeRequest request) {
         employeeValidator.validateAddEmployee(request);
         Employee employee = employeeService.createEmployee(request);
         return new ResponseEntity<>(employee , HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Void> deleteEmployee(String id) {
+    public ResponseEntity<Void> deleteEmployee(@RequestHeader(value="apikey") String apikey,
+                                               String id) {
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Employee> editEmployee(String id, EmployeeRequest request) {
+    public ResponseEntity<Employee> editEmployee(@RequestHeader(value="apikey") String apikey,
+                                                 String id, EmployeeRequest request) {
         employeeValidator.validateUpdateEmployee(id,request);
         Employee employee = new Employee();
         employee = employeeService.updateEmployee(id , request);
@@ -44,14 +48,15 @@ public class EmployeeController implements EmployeeApi{
     }
 
     @Override
-    public ResponseEntity<Employee> getEmployeeID(String id) {
+    public ResponseEntity<Employee> getEmployeeID(@RequestHeader(value="apikey") String apikey,
+                                                  String id) {
         employeeValidator.validateEmployeeExist(id);
         Employee employee = employeeService.getemployeeID(id);
         return new ResponseEntity<>(employee,HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Employees> getemployee() {
+    public ResponseEntity<Employees> getemployee(@RequestHeader(value="apikey") String apikey) {
         Employees employees = employeeService.getAllEmployee();
         return new ResponseEntity<>(employees,HttpStatus.OK);
     }

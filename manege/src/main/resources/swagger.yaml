@@ -15,6 +15,8 @@ basePath: /Manage
 
 paths : 
   /department:
+    parameters:
+      - $ref: "#/parameters/Request-Context"
     get : 
       tags :
         - Department 
@@ -56,7 +58,9 @@ paths :
         404:
           $ref: '#/responses/NotFound'
   /department/{id}:
+
     parameters:
+      - $ref: "#/parameters/Request-Context"
       - name: id
         in: path
         description: Department ID
@@ -100,6 +104,8 @@ paths :
         404:
           $ref: '#/responses/NotFound'
   /employee :
+    parameters:
+      - $ref: "#/parameters/Request-Context"
     get : 
       tags :
         - Employees 
@@ -142,6 +148,7 @@ paths :
           $ref: '#/responses/NotFound'
   /employee/{id}: 
     parameters:
+      - $ref: "#/parameters/Request-Context"
       - name: id
         in: path
         description: Department ID

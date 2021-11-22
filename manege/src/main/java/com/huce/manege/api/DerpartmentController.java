@@ -21,14 +21,16 @@ public class DerpartmentController implements DepartmentApi {
     @Autowired
     DepartmentValidator departmentValidator;
     @Override
-    public ResponseEntity<Department> addDepartment(DepartmentReq request) {
+    public ResponseEntity<Department> addDepartment(@RequestHeader(value="apikey") String apikey,
+                                                    @RequestBody DepartmentReq request) {
         departmentValidator.validateAddDepartment(request);
         Department department = departmentService.createDepartment(request);
         return new ResponseEntity<>(department,HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Department> editDepartment(String id, DepartmentReq request) {
+    public ResponseEntity<Department> editDepartment(@RequestHeader(value="apikey") String apikey,
+                                                     String id, DepartmentReq request) {
         departmentValidator.validateUpdateDepartment(id, request);
         Department department = departmentService.updateDepartment(id,request);
         return new ResponseEntity<>(department,HttpStatus.OK);
@@ -45,14 +47,14 @@ public class DerpartmentController implements DepartmentApi {
     }
 
     @Override
-    public ResponseEntity<Department> getDepartmentID(String id) {
+    public ResponseEntity<Department> getDepartmentID(@RequestHeader(value="apikey") String apikey,String id) {
         departmentValidator.validateEmployeeExist(id);
         Department department = departmentService.getDepartmentID(id);
         return new ResponseEntity<>(department,HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Departments> getdepartment() {
+    public ResponseEntity<Departments> getdepartment(@RequestHeader(value="apikey") String apikey) {
         Departments departments = new Departments();
         departments = departmentService.getAllDepartment();
         return new ResponseEntity<>(departments,HttpStatus.OK);
