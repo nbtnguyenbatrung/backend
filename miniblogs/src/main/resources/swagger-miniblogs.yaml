@@ -1,0 +1,296 @@
+swagger: '2.0'
+info:
+  description: The document of Miniblogs REST APIs
+  version: 1.0.0
+  title: Miniblogs REST APIs
+  contact:
+    name: Nguyen Ba Trung
+    url: 'https://swagger.io/specification/v2/'
+    email: nguyenbatrungnbt2000@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: 'localhost:8080'
+basePath: /miniblogs
+
+paths:
+  /new:
+    parameters:
+      - $ref: "#/parameters/Request-Context"
+    get:
+      tags:
+        - NEW
+      summary: Get All New 
+      operationId: getallnew
+      consumes: []
+      responses:
+        200:
+          $ref: '#/responses/News'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+    post:
+      tags:
+        - NEW
+      summary: Add new a new
+      operationId: addnew
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/NewReq'
+      responses:
+        200:
+          $ref: '#/responses/New'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+  /New/{id}:
+    parameters:
+      - $ref: "#/parameters/Request-Context"
+      - name: id
+        in: path
+        description: New ID
+        required: true
+        type: string
+    get:
+      tags:
+        - NEW
+      summary: get a new
+      operationId: getnew
+      consumes: []
+      responses:
+        200:
+          $ref: '#/responses/New'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+
+  /contact:
+    #-------------GET_a
+    get:
+      tags:
+        - CONTACT
+      summary : Get a Owner
+      operationId : getAllOwner
+      consumes: []
+      responses:
+        200:
+          $ref: '#/responses/Contact'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+    post :
+      tags :
+        - CONTACT
+      summary : addContact
+      operationId : addContact
+      consumes :
+        - application/json
+      produces :
+        - application/json
+      parameters:
+        - in : body
+          name : request
+          description : request
+          required : true
+          schema :
+            $ref: '#/definitions/ContactReq'
+      responses:
+        200:
+          $ref: '#/responses/Contact'
+        201:
+          $ref: '#/responses/Created'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+  # Put Owner
+  /contact/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: Contact ID
+        required: true
+        type: string
+    put:
+      tags:
+        - CONTACT
+      summary : Update Contact
+      operationId : updateContact
+      consumes :
+        - application/json
+      produces :
+        - application/json
+      parameters :
+        - in : body
+          name : request
+          description : request
+          schema :
+            $ref: '#/definitions/ContactReq'
+      responses:
+        200:
+          $ref: '#/responses/Contact'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
+
+definitions:
+  New:
+    type: object
+    properties:
+      id:
+        type: string
+        example: 030e5438-4d9e-4d41-aa68-ac04b05b7c3d
+      title:
+        type: string
+        example: Old Farm
+      summary :
+        type : string
+        description: "tóm tắt nội dung"
+        example: trải nghiệm đi chơi 
+      content:
+        type: string
+        example: Beautyful Old Farm
+      image:
+        type: string
+        example: anh.jpg
+      createdate:
+        type: string
+        example: JUNE 25, 2020
+      cetogory : 
+        type: string 
+        example: ART 
+  News:
+    type: array
+    items:
+      $ref: '#/definitions/New'
+  NewReq:
+    type: object
+    required:
+      - title
+      - content
+      - image
+      - summary
+    properties:
+      title:
+        type: string
+        example: Old Farm
+      content:
+        type: string
+        example: Beautyful Old Farm
+      summary :
+        type : string
+        description: "tóm tắt nội dung"
+        example: trải nghiệm đi chơi   
+      image:
+        type: string
+        example: anh.jpg
+      createdate:
+        type: string
+        example: JUNE 25, 2020
+      cetogory : 
+        type: string 
+        example: ART 
+  Contact: 
+    type : object
+    properties:
+      id:
+        type: string
+        example: 030e5438-4d9e-4d41-aa68-ac04b05b7c3d
+      name:
+        type: string
+        example: trung
+      email:
+        type: string
+        example: trung@gmail.com
+      message:
+        type: string
+        example: thật là hay đó 
+  Contacts:
+    type: array
+    items:
+      $ref: '#/definitions/Contact'
+  ContactReq: 
+    type : object
+    required:
+      - name
+      - email
+      - message
+    properties:
+      name:
+        type: string
+        example: trung
+      email:
+        type: string
+        example: trung@gmail.com
+      message:
+        type: string
+        example: thật là hay đó 
+    
+
+responses:
+  New :
+    description : 'New Response'
+    schema :
+      $ref : '#/definitions/New'
+  News :
+    description : 'List News Response'
+    schema :
+      $ref : '#/definitions/News'
+  Contact :
+    description: 'Property Response'
+    schema:
+      $ref: '#/definitions/Contact'
+  Contacts :
+    description: 'Contact Response'
+    schema:
+      $ref: '#/definitions/Contacts'
+  OK:
+    description: '200: OK'
+  Created:
+    description: '201: Created'
+  Accepted:
+    description: '202: Accepted'
+  NoContent:
+    description: '204: NoContent'
+  BadRequest:
+    description: '400: Bad Request'
+  NoAuthorized:
+    description: '401: No Authorized'
+  Forbidden:
+    description: '403: Forbidden'
+  NotFound:
+    description: '404: Not Found'
+  InternalServerError:
+    description: '500: Internal Server Error'
+parameters:
+  Request-Context:
+    name: apikey
+    in: header
+    description: Request context
+    required: true
+    type: string
