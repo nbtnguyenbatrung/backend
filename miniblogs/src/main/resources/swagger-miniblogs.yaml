@@ -57,7 +57,7 @@ paths:
           $ref: '#/responses/Forbidden'
         404:
           $ref: '#/responses/NotFound'
-  /New/{id}:
+  /new/{id}:
     parameters:
       - $ref: "#/parameters/Request-Context"
       - name: id
@@ -68,8 +68,8 @@ paths:
     get:
       tags:
         - NEW
-      summary: get a new
-      operationId: getnew
+      summary: get a newID
+      operationId: getnewID
       consumes: []
       responses:
         200:
@@ -80,7 +80,6 @@ paths:
           $ref: '#/responses/Forbidden'
         404:
           $ref: '#/responses/NotFound'
-
   /contact:
     parameters:
       - $ref: "#/parameters/Request-Context"
@@ -88,7 +87,7 @@ paths:
       tags:
         - CONTACT
       summary : Get a Owner
-      operationId : getAllOwner
+      operationId : getAllContact
       consumes: []
       responses:
         200:
@@ -140,10 +139,7 @@ paths:
         - CONTACT
       summary : Update Contact
       operationId : updateContact
-      consumes :
-        - application/json
-      produces :
-        - application/json
+      consumes: []
       parameters :
         - in : body
           name : request
@@ -211,9 +207,6 @@ definitions:
       image:
         type: string
         example: anh.jpg
-      createdate:
-        type: string
-        example: JUNE 25, 2020
       cetogory : 
         type: string 
         example: ART 

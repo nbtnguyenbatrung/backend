@@ -34,7 +34,6 @@ public class ApiKeyAuthenticationProvider implements AuthenticationProvider {
             }
             throw new BadCredentialsException("API Key is invalid");
         }
-        return null;
     }
 
     @Override

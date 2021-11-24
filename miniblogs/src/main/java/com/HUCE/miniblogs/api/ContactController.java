@@ -12,7 +12,7 @@ public class ContactController implements ContactApi{
     }
 
     @Override
-    public ResponseEntity<Contact> getAllOwner(String apikey) {
+    public ResponseEntity<Contact> getAllContact(String apikey) {
         return null;
     }
 
