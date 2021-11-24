@@ -1,13 +1,17 @@
 package com.HUCE.miniblogs.service;
 
 import com.HUCE.miniblogs.entity.ContactEntity;
+import com.HUCE.miniblogs.entity.NewEntity;
 import com.HUCE.miniblogs.mapper.ContactMapper;
 import com.HUCE.miniblogs.model.Contact;
 import com.HUCE.miniblogs.model.ContactReq;
+import com.HUCE.miniblogs.model.ModelNew;
 import com.HUCE.miniblogs.repository.ContactRepository;
 import com.HUCE.miniblogs.serviceimpl.ContactServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ContactService implements ContactServiceimpl {
@@ -25,10 +29,12 @@ public class ContactService implements ContactServiceimpl {
     }
 
     @Override
-    public Contact getallcontact(String id) {
-        ContactEntity contactEntity = contactRepository.getById(id);
+    public Contact getallcontact() {
+        List<ContactEntity> contactEntity = contactRepository.findAll();
         Contact contact = new Contact();
-        contact = mapper.toContactfromEntity(contactEntity);
+        for(ContactEntity contactEntity1 : contactEntity){
+            contact = mapper.toContactfromEntity(contactEntity1);
+        }
         return contact;
     }
 

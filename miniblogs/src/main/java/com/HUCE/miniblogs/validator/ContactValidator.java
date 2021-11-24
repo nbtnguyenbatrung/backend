@@ -19,12 +19,13 @@ public class ContactValidator {
     private static final String MESSAGE_REQUEST = "Employee mesage is requested";
 
     public void validateAddContact(ContactReq request){
-            checkRequiredField(request.getName(),NAME_REQUEST);
+        checkRequiredField(request.getName(),NAME_REQUEST);
         checkRequiredField(request.getEmail(),EMAIL_REQUEST);
         checkRequiredField(request.getMessage(),MESSAGE_REQUEST);
     }
 
     public void validateUpdateContact(String id,ContactReq request){
+        validateEmployeeExist(id);
         checkRequiredField(request.getName(),NAME_REQUEST);
         checkRequiredField(request.getEmail(),EMAIL_REQUEST);
         checkRequiredField(request.getMessage(),MESSAGE_REQUEST);

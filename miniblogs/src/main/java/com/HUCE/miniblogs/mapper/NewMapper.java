@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -18,20 +19,17 @@ public class NewMapper {
     NewRepository newRepository;
 
     public NewEntity toEntityFromNew(NewReq req){
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD");
-        String day = simpleDateFormat.format(date).toUpperCase();
-        simpleDateFormat = new SimpleDateFormat("MMMM");
-        String month = simpleDateFormat.format(date).toUpperCase();
-        simpleDateFormat = new SimpleDateFormat("YYYY");
-        String year = simpleDateFormat.format(date).toUpperCase();
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH)+1;
+        int year = cal.get(Calendar.YEAR);
         NewEntity newEntity = new NewEntity();
         newEntity.setId(UUID.randomUUID().toString());
         newEntity.setTitle(req.getTitle());
         newEntity.setContent(req.getContent());
         newEntity.setSummary(req.getSummary());
         newEntity.setImage(req.getImage());
-        newEntity.setCreatedate(month + "" + day + ", " +year);
+        newEntity.setCreatedate(month + " " + day + ", " +year);
         newEntity.setCetogory(req.getCetogory());
         return newEntity;
     }

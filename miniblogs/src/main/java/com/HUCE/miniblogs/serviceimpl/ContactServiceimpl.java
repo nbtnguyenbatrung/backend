@@ -5,6 +5,6 @@ import com.HUCE.miniblogs.model.ContactReq;
 
 public interface ContactServiceimpl {
     Contact addcontact(ContactReq req);
-    Contact getallcontact(String id) ;
+    Contact getallcontact() ;
     Contact updatecontact(String id, ContactReq req);
 }

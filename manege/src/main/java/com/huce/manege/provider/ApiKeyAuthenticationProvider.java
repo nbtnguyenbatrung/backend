@@ -16,9 +16,12 @@ import java.util.Optional;
 
 @Component
 public class ApiKeyAuthenticationProvider implements AuthenticationProvider {
-    @Autowired
     private ApiKeyRepository apiKeyRepository;
 
+    @Autowired
+    public ApiKeyAuthenticationProvider(ApiKeyRepository apiKeyRepository) {
+        this.apiKeyRepository = apiKeyRepository;
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
