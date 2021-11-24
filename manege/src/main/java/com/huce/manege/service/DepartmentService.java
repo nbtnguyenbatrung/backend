@@ -15,10 +15,15 @@ import java.util.List;
 @Service
 public class DepartmentService implements DepartmentServiceimpl {
 
-    @Autowired
     private DerpartmentJPA derpartmentJPA;
-    @Autowired
     private DerpartmentMapper mapper;
+
+    @Autowired
+    public DepartmentService(DerpartmentJPA derpartmentJPA,
+                             DerpartmentMapper mapper) {
+        this.derpartmentJPA = derpartmentJPA;
+        this.mapper = mapper;
+    }
 
     @Override
     public Department createDepartment(DepartmentReq req) {

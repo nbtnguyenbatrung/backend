@@ -36,12 +36,9 @@ public class DerpartmentController implements DepartmentApi {
         return new ResponseEntity<>(department,HttpStatus.OK);
     }
 
-    @GetMapping("/trung")
-    public String hello(){
-        return "trung";
-    }
     @GetMapping("/departmentdelete/{id}")
-    public void delete(@PathVariable("id") String id){
+    public void delete(@RequestHeader(value="apikey") String apikey,
+                       @PathVariable("id") String id){
         departmentValidator.validateEmployeeExist(id);
         departmentService.deleteDepartment(id);
     }

@@ -82,7 +82,8 @@ paths:
           $ref: '#/responses/NotFound'
 
   /contact:
-    #-------------GET_a
+    parameters:
+      - $ref: "#/parameters/Request-Context"
     get:
       tags:
         - CONTACT
@@ -128,6 +129,7 @@ paths:
   # Put Owner
   /contact/{id}:
     parameters:
+      - $ref: "#/parameters/Request-Context"
       - name: id
         in: path
         description: Contact ID

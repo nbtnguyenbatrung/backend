@@ -33,6 +33,6 @@ public class ApiKeyAuthenticationToken extends AbstractAuthenticationToken {
 
     @Override
     public Object getPrincipal() {
-        return null;
+        return apiKey;
     }
 }
