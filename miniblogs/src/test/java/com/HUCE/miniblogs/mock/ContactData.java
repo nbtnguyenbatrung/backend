@@ -1,5 +1,6 @@
 package com.HUCE.miniblogs.mock;
 
+import com.HUCE.miniblogs.entity.ContactEntity;
 import com.HUCE.miniblogs.model.Contact;
 import com.HUCE.miniblogs.model.ContactReq;
 
@@ -26,5 +27,15 @@ public class ContactData {
         contactReq.setEmail(EMAIL);
         contactReq.setMessage(MESSAGE);
         return contactReq;
+    }
+
+    public static ContactEntity mockContactEntity(){
+        ContactEntity contactEntity = new ContactEntity();
+
+        contactEntity.setId(ID);
+        contactEntity.setName(NAME);
+        contactEntity.setEmail(EMAIL);
+        contactEntity.setMessage(MESSAGE);
+        return contactEntity;
     }
 }

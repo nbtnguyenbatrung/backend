@@ -14,9 +14,9 @@ public class ContactValidator {
     ContactRepository contactRepositoryl;
 
     private static final String CONTACT_DOES_NOT_EXIST = "Contact does not exist";
-    private static final String NAME_REQUEST = "Employee name is requested";
-    private static final String EMAIL_REQUEST = "Employee email is requested";
-    private static final String MESSAGE_REQUEST = "Employee mesage is requested";
+    private static final String NAME_REQUEST = "Contact name is requested";
+    private static final String EMAIL_REQUEST = "Contact email is requested";
+    private static final String MESSAGE_REQUEST = "Contact mesage is requested";
 
     public void validateAddContact(ContactReq request){
         checkRequiredField(request.getName(),NAME_REQUEST);

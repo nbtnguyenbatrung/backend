@@ -1,11 +1,9 @@
 package com.HUCE.miniblogs.service;
 
 import com.HUCE.miniblogs.entity.ContactEntity;
-import com.HUCE.miniblogs.entity.NewEntity;
 import com.HUCE.miniblogs.mapper.ContactMapper;
 import com.HUCE.miniblogs.model.Contact;
 import com.HUCE.miniblogs.model.ContactReq;
-import com.HUCE.miniblogs.model.ModelNew;
 import com.HUCE.miniblogs.repository.ContactRepository;
 import com.HUCE.miniblogs.serviceimpl.ContactServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;

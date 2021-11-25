@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NewValidator {
-    private static final String NEW_DOES_NOT_EXIST = "Employee does not exist";
-    private static final String TITLE_REQUEST = "Employee title is requested";
-    private static final String CONTENT_REQUEST = "Employee content is requested";
-    private static final String SUMMARY_REQUEST = "Employee summary is requested";
+    private static final String NEW_DOES_NOT_EXIST = "New does not exist";
+    private static final String TITLE_REQUEST = "New title is requested";
+    private static final String CONTENT_REQUEST = "New content is requested";
+    private static final String SUMMARY_REQUEST = "New summary is requested";
 
     @Autowired
     NewRepository newRepository;
