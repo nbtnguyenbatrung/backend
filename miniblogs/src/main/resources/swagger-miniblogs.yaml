@@ -14,6 +14,30 @@ host: 'localhost:8080'
 basePath: /miniblogs
 
 paths:
+  /news:
+    parameters:
+      - $ref: "#/parameters/Request-Context"
+    get:
+      tags:
+        - NEW
+      summary: Search New
+      operationId: search
+      consumes: [ ]
+      parameters:
+        - name: Search New
+          in: query
+          description: Keyword Search
+          required: true
+          type: string
+      responses:
+        200:
+          $ref: '#/responses/News'
+        401:
+          $ref: '#/responses/NoAuthorized'
+        403:
+          $ref: '#/responses/Forbidden'
+        404:
+          $ref: '#/responses/NotFound'
   /new:
     parameters:
       - $ref: "#/parameters/Request-Context"

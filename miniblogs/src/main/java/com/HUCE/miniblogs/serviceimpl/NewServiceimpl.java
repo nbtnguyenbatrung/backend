@@ -9,4 +9,5 @@ public interface NewServiceimpl {
     ModelNew addnew(NewReq req);
     News getallnew();
     ModelNew getnewid(String id);
+    News search(String title);
 }

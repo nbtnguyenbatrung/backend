@@ -1,10 +1,13 @@
 package com.HUCE.miniblogs.entity;
 
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Indexed
 @Entity
 @Table(name = "Contact")
 public class ContactEntity {

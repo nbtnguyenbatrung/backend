@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 public class ContactValidator {
 
     @Autowired
-    ContactRepository contactRepositoryl;
+    ContactRepository contactRepository;
 
     private static final String CONTACT_DOES_NOT_EXIST = "Contact does not exist";
     private static final String NAME_REQUEST = "Contact name is requested";
     private static final String EMAIL_REQUEST = "Contact email is requested";
-    private static final String MESSAGE_REQUEST = "Contact mesage is requested";
+    private static final String MESSAGE_REQUEST = "Contact message is requested";
 
     public void validateAddContact(ContactReq request){
         checkRequiredField(request.getName(),NAME_REQUEST);
@@ -32,7 +32,7 @@ public class ContactValidator {
     }
 
     public void validateEmployeeExist(String id) {
-        if (contactRepositoryl.existsById(id)) {return;}
+        if (contactRepository.existsById(id)) {return;}
 
         throw new NotFoundException(CONTACT_DOES_NOT_EXIST);
     }

@@ -1,18 +1,36 @@
 package com.HUCE.miniblogs.entity;
 
+import org.apache.lucene.analysis.core.KeywordTokenizerFactory;
+import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
+import org.apache.lucene.analysis.standard.StandardFilterFactory;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.AnalyzerDef;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TokenFilterDef;
+import org.hibernate.search.annotations.TokenizerDef;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
+@Indexed
 @Entity
 @Table(name = "New")
+@AnalyzerDef(name = "newAnalyzer",
+        tokenizer = @TokenizerDef(factory = KeywordTokenizerFactory.class ),
+        filters = {
+                @TokenFilterDef(factory = StandardFilterFactory.class),
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+        }
+)
 public class NewEntity {
     @Id
     @Column(name="id",nullable = false)
     private String id;
 
+    @Field(analyzer = @Analyzer(definition = "newAnalyzer"))
     @Column(name="title",nullable = false)
     private String title;
 

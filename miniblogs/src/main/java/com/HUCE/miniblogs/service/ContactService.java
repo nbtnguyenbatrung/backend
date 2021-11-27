@@ -14,10 +14,17 @@ import java.util.List;
 @Service
 public class ContactService implements ContactServiceimpl {
 
+
+    private final ContactRepository contactRepository;
+    private final ContactMapper mapper;
+
     @Autowired
-    ContactRepository contactRepository;
-    @Autowired
-    ContactMapper mapper;
+    public ContactService(ContactRepository contactRepository, ContactMapper mapper) {
+        this.contactRepository = contactRepository;
+        this.mapper = mapper;
+    }
+
+
     @Override
     public Contact addcontact(ContactReq req) {
         ContactEntity contactEntity = mapper.toEntityfromContact(req);
