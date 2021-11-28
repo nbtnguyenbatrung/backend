@@ -1,5 +1,7 @@
 package com.HUCE.miniblogs.api;
 
+
+import com.HUCE.miniblogs.mapper.NewMapper;
 import com.HUCE.miniblogs.model.ModelNew;
 import com.HUCE.miniblogs.model.NewReq;
 import com.HUCE.miniblogs.model.News;
@@ -12,8 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotNull;
-
+import javax.persistence.EntityManager;
 
 @RestController
 @CrossOrigin
@@ -48,10 +49,14 @@ public class NewController implements NewApi,NewsApi {
     }
 
     @Override
-    public ResponseEntity<News> search(String apikey, @NotNull String searchNew) {
+    public ResponseEntity<News> search(String apikey, String searchNew) {
+
         searchNew = HibernateSearchUtil.decodeUrl(searchNew);
-        newSearchValidator.validateTermSearch(searchNew);
+//        newSearchValidator.validateTermSearch(searchNew);
         News news = newService.search(searchNew);
         return new ResponseEntity<>(news,HttpStatus.OK);
+//        return null;
     }
+
+
 }

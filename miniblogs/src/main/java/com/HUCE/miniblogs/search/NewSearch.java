@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 public class NewSearch {
-    private static final String NEW_NAME = "name";
+    private static final String NEW_NAME = "title";
 
     private EntityManager entityManager;
     private EntityManagerFactory entityManagerFactory;
