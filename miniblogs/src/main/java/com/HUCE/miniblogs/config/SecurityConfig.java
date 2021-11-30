@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(
                         new ApiKeyAuthenticationFilter(authenticationManager()),
                         AnonymousAuthenticationFilter.class).csrf().disable();
+        httpSecurity.cors();
     }
 
     @Bean
