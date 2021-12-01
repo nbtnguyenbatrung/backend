@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface ApiKeyRepository extends JpaRepository<ApiKeyEntity, Long> {
     Optional<ApiKeyEntity> findByKey(String key);
+    ApiKeyEntity findByUsername (String usename) ;
 }
